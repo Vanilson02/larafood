@@ -31,4 +31,17 @@ class StoreUpdatePlan extends FormRequest
             'price' => "required|regex:/^\d+(\.\d{1,2})?$/",
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Informe o nome do Plano !!',
+            'name.min' => 'Nome do Plano deve conter mais que 2 caracteres !!',
+            'name.max' => 'Nome do Plano deve conter no maximo 255 caracteres !!',
+            'description.min' => 'Descrição deve conter mais que 2 caracteres !!',
+            'description.max' => 'Descrição deve conter no maximo 255 caracteres !!',
+            'price.required' => 'Informe o valor do Plano !!',
+            'price.regex' => 'Formato de preço inválido !!'
+        ];
+    }
 }
