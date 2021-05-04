@@ -3,13 +3,21 @@
 @section('title','Planos')
 
 @section('content_header')
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+        <li class="breadcrumb-item">Planos</li>
+    </ol>
     <h1>Planos <a href="{{ route('plans.create') }}" class="btn btn-dark">ADD</a></h1>
 @endsection
 
 @section('content')
     <div class="card">
         <div class="card-header">
-
+            <form action="{{ route('plans.search') }}" method="POST" class="form form-inline">
+                @csrf       
+                <input type="text" name="filter" id="filter" placeholder="Nome" class="form-control" value="{{ $filters['filter'] ?? ' ' }}">
+                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i><span>buscar</span></button>
+            </form>
         </div>
         <div class="card-body">
             <table class="table table-condensed">
@@ -24,9 +32,12 @@
                     @foreach ($plans as $plan)
                         <tr>
                             <td>{{ $plan->name }}</td>
-                            <td>{{ $plan->price }}</td>
-                            <td style="width:10px;">
-                                <a href="" class="btn btn-warning">VER</a>
+                            <td>{{ number_format($plan->price, 2, ',', '.') }}</td>
+                            <td style="width:20px;">
+                                <a href="{{ route('plans.show', $plan->url)}}" class="btn btn-dark"><i class="fas fa-search-plus"></i></a>
+                            </td>
+                            <td style="width:20px;">
+                                <a href="{{ route('plans.edit', $plan->url)}}" class="btn btn-danger"><i class="fas fa-edit"></i></a>
                             </td>
 
                         </tr>
@@ -35,7 +46,11 @@
             </table>       
         </div>
         <div class="card-footer">
-            {!! $plans->links() !!}
+            @if (isset($filters))
+                {!! $plans->appends($filters)->links() !!}
+            @else
+                {!! $plans->links() !!}
+            @endif  
         </div>
     </div>
 @endsection
