@@ -41,7 +41,8 @@ class StoreUpdatePlan extends FormRequest
             'description.min' => 'Descrição deve conter mais que 2 caracteres !!',
             'description.max' => 'Descrição deve conter no maximo 255 caracteres !!',
             'price.required' => 'Informe o valor do Plano !!',
-            'price.regex' => 'Formato de preço inválido !!'
+            'price.regex' => 'Formato de preço inválido !!',
+            'name.unique' => 'Já existe registro desse Plano !!',
         ];
     }
 }

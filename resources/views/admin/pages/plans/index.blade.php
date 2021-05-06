@@ -8,6 +8,8 @@
         <li class="breadcrumb-item">Planos</li>
     </ol>
     <h1>Planos <a href="{{ route('plans.create') }}" class="btn btn-dark">ADD</a></h1>
+    
+    @include('admin.includs.alert')
 @endsection
 
 @section('content')
@@ -33,11 +35,10 @@
                         <tr>
                             <td>{{ $plan->name }}</td>
                             <td>{{ number_format($plan->price, 2, ',', '.') }}</td>
-                            <td style="width:20px;">
+                            <td style="width:220px;">
                                 <a href="{{ route('plans.show', $plan->url)}}" class="btn btn-dark"><i class="fas fa-search-plus"></i></a>
-                            </td>
-                            <td style="width:20px;">
                                 <a href="{{ route('plans.edit', $plan->url)}}" class="btn btn-danger"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('details.plan.index', $plan->url)}}" class="btn btn-dark">Detalhes</a>
                             </td>
 
                         </tr>

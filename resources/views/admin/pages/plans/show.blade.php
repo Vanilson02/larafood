@@ -9,11 +9,14 @@
         <li class="breadcrumb-item"> Plano: {{ $plan->name}} </li>
 
     </ol>
-    <h1>Detalhes do Plano<b></b></h1>
+    @include('admin.includs.alert')
 @endsection
 
 @section('content')
     <div class="card">
+        <div class="card-header">   
+            <h3>Detalhes do Plano</h3>
+        </div>
         <div class="card-body">
             <ul>
                 <li>
