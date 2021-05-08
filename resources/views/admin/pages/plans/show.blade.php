@@ -15,7 +15,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">   
-            <h3>Detalhes do Plano</h3>
+            <h3>{{ $plan->name}}</h3><a href="{{ route('details.plan.index', $plan->url)}}" class="btn btn-dark">Detalhes</a>
         </div>
         <div class="card-body">
             <ul>
@@ -32,6 +32,9 @@
                     <strong>Decrição: </strong> {{ $plan->description }}
                 </li>
             </ul>
+            
+        </div>
+        <div class="card-footer">
             <form action="{{ route('plans.destroy',$plan->url) }}" method="post">
                 @csrf
                 @method('DELETE')

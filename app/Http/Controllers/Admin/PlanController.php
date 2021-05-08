@@ -62,13 +62,13 @@ class PlanController extends Controller
 
         if($plan->details->count() > 0){
             return redirect()->back()
-                            ->with('text-danger', 'Não foi possivel deletar, Plano com detalhes associados!!');
+                            ->with('alert-danger', 'Não foi possivel deletar, Plano com detalhes associados!!');
 
         }
 
         $plan->delete();
         return redirect()->route('plans.index')
-                        ->with('text-success', "Plano {$plan->name} foi deletado!!");
+                        ->with('alert-success', "{$plan->name} foi deletado!!");
     }
 
     public function search(Request $request)

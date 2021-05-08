@@ -22,10 +22,11 @@ class StoreUpdateDetailPlan extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {   
         return [
-            'name' => 'required|min:3|max:255|unique:details_plan,name',
+            'name' => 'required|min:3|max:255',
         ];
+
     }
 
     public function messages()
@@ -33,8 +34,7 @@ class StoreUpdateDetailPlan extends FormRequest
         return [
             'name.required' => 'Informe o nome do Detalhe !!',
             'name.min' => 'Nome do Detalhe deve conter mais que 2 caracteres !!',
-            'name.max' => 'Nome do Detalhe deve conter no maximo 255 caracteres !!',
-            'name.unique' => 'Já existe registro desse detalhe !!',           
+            'name.max' => 'Nome do Detalhe deve conter no maximo 255 caracteres !!'       
         ];
     }
 }

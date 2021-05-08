@@ -30,6 +30,8 @@ class StoreUpdatePlan extends FormRequest
             'description' => 'nullable|min:3|max:255',
             'price' => "required|regex:/^\d+(\.\d{1,2})?$/",
         ];
+
+        
     }
 
     public function messages()
