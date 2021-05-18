@@ -18,6 +18,8 @@ Route::prefix('admin')
      * Routes Profiles
     */
     
+    Route::any('profiles/search','ACL\ProfileController@search')->name('profiles.search');
+
     // resource cria todas as rotas correspondente ao CRUD
     Route::resource('profiles','ACL\ProfileController');
 

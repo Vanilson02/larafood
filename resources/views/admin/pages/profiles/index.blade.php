@@ -15,7 +15,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('plans.search') }}" method="POST" class="form form-inline">
+            <form action="{{ route('profiles.search') }}" method="POST" class="form form-inline">
                 @csrf       
                 <input type="text" name="filter" id="filter" placeholder="Nome" class="form-control" value="{{ $filters['filter'] ?? ' ' }}">
                 <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i><span>buscar</span></button>
@@ -26,6 +26,7 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,7 +37,7 @@
                             <td style="width:220px;">
                                 {{-- <a href="{{ route('profiles.show', $profile->url)}}" class="btn btn-dark"><i class="fas fa-search-plus"></i></a> --}}
                                 <a href="{{ route('profiles.edit', $profile->id)}}" class="btn btn-danger"><i class="fas fa-edit"></i></a>
-                                <a href="{{ route('profiles.show', $profile->id)}}" class="btn btn-dark">Detalhes</a>
+                                <a href="{{ route('profiles.show', $profile->id)}}" class="btn btn-dark"><i class="fas fa-search-plus"></i></a>
                             </td>
 
                         </tr>

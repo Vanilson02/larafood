@@ -25,7 +25,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = $this->repository->paginate();
+        $profiles = $this->repository->paginate(2);
 
         return view('admin.pages.profiles.index',compact('profiles'));
     }
@@ -61,7 +61,13 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = $this->repository->find($id);
+
+        if(!$profile){
+            return redirect()->back();
+        }
+        
+        return view('admin.pages.profiles.show',compact('profile'));
     }
 
     /**
@@ -110,6 +116,37 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $profile = $this->repository->find($id);
+
+        if(!$profile){
+            return redirect()->back();
+
+        }
+
+        $profile->delete();
+
+        return redirect()->route('profiles.index');
+    }
+
+    /**
+     * Search results.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {   
+        $filters = $request->only('filter');
+
+        $profiles = $this->repository
+                        ->where(function($query) use ($request) {
+                            if($request->filter){
+                                $query->where('name', $request->filter);
+                                $query->orWhere('description', 'LIKE',"%{$request->filter}%");
+                            }
+
+                        })->paginate(2);
+
+        return view('admin.pages.profiles.index', compact('profiles','filters'));
     }
 }
