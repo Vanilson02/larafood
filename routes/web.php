@@ -15,6 +15,22 @@ Route::prefix('admin')
     ->group(function() {
 
     /**
+     * Routes Profiles
+    */
+    
+    // resource cria todas as rotas correspondente ao CRUD
+    Route::resource('profiles','ACL\ProfileController');
+
+    // Route::get('profiles','ACL\ProfileController@index')->name('profiles.index');
+    // Route::post('profiles','ACL\ProfileController@store')->name('profiles.store');
+    // Route::get('profiles/create','ACL\ProfileController@create')->name('profiles.create');
+    // Route::delete('profiles/{id}','ACL\ProfileController@destroy')->name('profiles.destroy');
+    // Route::put('profiles/{id}','ACL\ProfileController@update')->name('profiles.update');
+    // Route::get('profiles/{id}','ACL\ProfileController@show')->name('profiles.show');
+    // Route::get('profiles/{id}/edit','ACL\ProfileController@edit')->name('profiles.edit');
+
+
+    /**
      *  Rotas Details Plans - Detalhes do Plano
      */
     Route::delete('plans/{url}/details/{idDetail}','DetailPlanController@destroy')->name('details.plan.destroy');
