@@ -23,8 +23,9 @@ class StoreUpdateDetailPlan extends FormRequest
      */
     public function rules()
     {   
+        $id = $this->segment(5);
         return [
-            'name' => 'required|min:3|max:255',
+            'name' => "required|min:3|max:255|unique:details_plan,name,{$id},id",
         ];
 
     }
@@ -34,7 +35,9 @@ class StoreUpdateDetailPlan extends FormRequest
         return [
             'name.required' => 'Informe o nome do Detalhe !!',
             'name.min' => 'Nome do Detalhe deve conter mais que 2 caracteres !!',
-            'name.max' => 'Nome do Detalhe deve conter no maximo 255 caracteres !!'       
+            'name.max' => 'Nome do Detalhe deve conter no maximo 255 caracteres !!',
+            'name.unique' => 'Já existe registro desse Perfil !!',
+      
         ];
     }
 }
